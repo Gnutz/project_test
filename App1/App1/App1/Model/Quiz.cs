@@ -1,6 +1,6 @@
 ﻿using System;
-using MongoDB.Bson.Serialization.IdGenerators;
-using MongoDB.Bson.Serialization.Attributes;
+//using MongoDB.Bson.Serialization.IdGenerators;
+//using MongoDB.Bson.Serialization.Attributes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
@@ -9,11 +9,11 @@ namespace App1.Model
 {
     public class Quiz : PropertyChangedModel
     {
-        [BsonId(IdGenerator = typeof(CombGuidGenerator))]
+       // [BsonId(IdGenerator = typeof(CombGuidGenerator))]
         public Guid Id { get; set; }
 
         string _quizName;
-        [BsonElement("QuizName")]
+        //[BsonElement("QuizName")]
         public string QuizName
         {
             get => _quizName;
@@ -31,7 +31,7 @@ namespace App1.Model
 
 
         string _category;
-        [BsonElement("Category")]
+        //[BsonElement("Category")]
         public string Category
         {
             get => _category;
@@ -46,74 +46,54 @@ namespace App1.Model
             }
         }
 
-        string _question;
-        [BsonElement("Question")]
-        public string Question
+        Question[] _questions;
+        //[BsonElement("Questions")]
+        public Question[] Questions
         {
-            get => _question;
+            get => _questions;
+
             set
             {
-                if (_question == value)
+                if (_questions == value)
                     return;
 
-                _question = value;
+                _questions = value;
 
                 HandlePropertyChanged();
             }
         }
 
-        string _option1;
-        [BsonElement("Option1")]
-        public string Option1
+
+        uint currentQuestionIndex_;
+
+        public bool isLastQuestion()
         {
-            get => _option1;
-            set
-            {
-                if (_option1 == value)
-                    return;
+            if (currentQuestionIndex_ == (_questions.Length))
+                return true;
+            else
+                return false;
+        }
+        //getNextQuestion
+        public void GetNextQuestion(ref Question question)
+        {
+            if (!isLastQuestion())
+                question = _questions[++currentQuestionIndex_];
 
-                _option1 = value;
-
-                HandlePropertyChanged();
-            }
         }
 
-        /* Question[] _questions;
-         [BsonElement("Questions")]
-         public Question[] Questions
-         {
-             get => _questions;
-
-             set
-             {
-                 if (_questions == value)
-                     return;
-
-                 _questions = value;
-
-                 HandlePropertyChanged();
-             }
-         }
-
-         //getNextQuestion
-         public Question GetNextQuestion()
-         {
-             return new Question();
-         }
-
-         public void print()
-         {
-             Console.WriteLine($"-----------QUIZ-------");
-             Console.WriteLine($"Quizname: {QuizName}");
-             Console.WriteLine($"Category: {Category}");
-             Console.WriteLine("----------------------");
-             Console.WriteLine("     Questions");
-             Console.WriteLine("----------------------");
-             foreach (var q in Questions)
-             {
-                 q.print();
-             }
-             Console.WriteLine("----------------------");
-         }*/
+        public void print()
+        {
+            Console.WriteLine($"-----------QUIZ-------");
+            Console.WriteLine($"Quizname: {QuizName}");
+            Console.WriteLine($"Category: {Category}");
+            Console.WriteLine("----------------------");
+            Console.WriteLine("     Questions");
+            Console.WriteLine("----------------------");
+            foreach (var q in Questions)
+            {
+                q.print();
+            }
+            Console.WriteLine("----------------------");
+        }
     }
 }

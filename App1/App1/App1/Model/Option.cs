@@ -1,6 +1,6 @@
 ﻿using System;
-using MongoDB.Bson.Serialization.IdGenerators;
-using MongoDB.Bson.Serialization.Attributes;
+//using MongoDB.Bson.Serialization.IdGenerators;
+//using MongoDB.Bson.Serialization.Attributes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -10,7 +10,7 @@ namespace App1.Model
     {
 
         string _optionText;
-        [BsonElement("OptionText")]
+     //   [BsonElement("OptionText")]
         public string OptionText
         {
             get => _optionText;
@@ -26,7 +26,7 @@ namespace App1.Model
         }
 
         bool _isRight; //den her behøver måske ikke være propertychanged
-        [BsonElement("IsRight")]
+     //   [BsonElement("IsRight")]
         public bool IsRight
         {
             get => _isRight;
@@ -42,7 +42,7 @@ namespace App1.Model
         }
 
         int _optionIndex;
-        [BsonElement("OptionIndex")]
+      //  [BsonElement("OptionIndex")]
         public int QuestionIndex
         {
             get => _optionIndex;

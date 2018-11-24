@@ -27,13 +27,18 @@ namespace App1
 
         private async void quiz_OnTapped(object sender, EventArgs e)
         {
-            var myQuiz = new Quiz();
+            /*var myQuiz = new Quiz();
             myQuiz.Question = "Er der hul igennem?";
             myQuiz.Option1 = "Måske";
-            myQuiz.Category = "Quiz";
-            var QuizPage = new QuizPageDemo(myQuiz);
+            myQuiz.Category = "Quiz";*/
+           switchToQuizSearchPage();
+        }
 
-            await Navigation.PushModalAsync(new NavigationPage(QuizPage));
+        async void switchToQuizSearchPage()
+        {
+
+            var quizSearchPage = new QuizSearchPage();
+            await Navigation.PushModalAsync(new NavigationPage(quizSearchPage));
         }
 
         private async void spil_OnTapped(object sender, EventArgs e)

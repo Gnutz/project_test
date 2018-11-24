@@ -1,6 +1,6 @@
 ﻿using System;
-using MongoDB.Bson.Serialization.IdGenerators;
-using MongoDB.Bson.Serialization.Attributes;
+//using MongoDB.Bson.Serialization.IdGenerators;
+//using MongoDB.Bson.Serialization.Attributes;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -13,7 +13,7 @@ namespace App1.Model
         private static System.Random nrg => new System.Random();
 
         int _questionIndex;
-        [BsonElement("QuestionIndex")]
+      //  [BsonElement("QuestionIndex")]
         public int QuestionIndex
         {
             get => _questionIndex;
@@ -30,7 +30,7 @@ namespace App1.Model
         }
 
         string _questionText;
-        [BsonElement("QuestionText")]
+     //   [BsonElement("QuestionText")]
         public string QuestionText
         {
             get => _questionText;
@@ -48,22 +48,25 @@ namespace App1.Model
 
         Option[] _options;
 
-        [BsonElement("Option0")]
+        public Option[] Options
+        {
+            get { return _options;}
+            set { _options = value; }
+        }
+
+      //  [BsonElement("Option0")]
         public Option Option0
         {
             get => _options[0];
             set
             {
-                if (_options[0] == value)
-                    return;
-
-                _options[0] = value;
+               _options[0] = value;
 
                 HandlePropertyChanged();
             }
         }
 
-        [BsonElement("Option1")]
+      //  [BsonElement("Option1")]
         public Option Option1
         {
             get => _options[1];
@@ -78,7 +81,7 @@ namespace App1.Model
             }
         }
 
-        [BsonElement("Option2")]
+      //  [BsonElement("Option2")]
         public Option Option2
         {
             get => _options[2];
@@ -94,7 +97,7 @@ namespace App1.Model
         }
 
 
-        [BsonElement("Option3")]
+       // [BsonElement("Option3")]
         public Option Option3
         {
             get => _options[3];
